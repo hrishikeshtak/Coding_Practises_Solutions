@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 # Consider a list (list = []). You can perform the following commands:
 
