@@ -1,2 +1,1 @@
-# Hackerrank
-Solutions to the practice exercises
+## Solutions to the practice exercises
