@@ -1,30 +1,31 @@
 #!/usr/bin/python3
 
-powers = []
+# from math import sqrt
+
+powers = set()
 
 
-def sqrt(N):
-    lo = 1
-    hi = N
-    ans = -1
-    while lo <= hi:
-        mid = (lo + hi) // 2
-        if mid * mid <= N:
-            ans = mid
-            lo = mid + 1
-        else:
-            hi = mid - 1
-    return ans
+# def sqrt(N):
+#     lo = 1
+#     hi = N
+#     ans = -1
+#     while lo <= hi:
+#         mid = (lo + hi) // 2
+#         if mid * mid <= N:
+#             ans = mid
+#             lo = mid + 1
+#         else:
+#             hi = mid - 1
+#     return ans
 
 
 def store_powers():
     global powers
     for i in range(2, int(1e4)):
         p = i
-        while p <= int(1e6):
+        while p <= int(1e8):
             p = p * i
-            if p not in powers:
-                powers.append(p)
+            powers.add(p)
 
 
 def express_as_a_power_b(N):
@@ -33,21 +34,21 @@ def express_as_a_power_b(N):
 
     if N in powers:
         return "Yes"
-    elif N not in powers and N < int(1e6):
+    else:
         return "No"
 
-    N_sqrt = sqrt(N)
-    count = 0
-    for i in range(2, N_sqrt + 1):
-        p = i
-        while p <= N:
-            count += 1
-            p *= i
-            if p == N:
-                # print("iterations: ", count)
-                return "Yes"
-    # print("iterations: ", count)
-    return "No"
+    # N_sqrt = int(sqrt(N))
+    # count = 0
+    # for i in range(2, N_sqrt + 1):
+    #     p = i
+    #     while p <= N:
+    #         count += 1
+    #         p *= i
+    #         if p == N:
+    #             # print("iterations: ", count)
+    #             return "Yes"
+    # # print("iterations: ", count)
+    # return "No"
 
 
 if __name__ == '__main__':
