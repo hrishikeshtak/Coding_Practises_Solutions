@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 
 # Optimize O(N)
+from collections import defaultdict
 
 
 def valid_subarrays(arr, N):
-    first_indices = {}
-    last_indices = {}
+    first_indices = defaultdict(lambda: 0)
     # replace all 0 with -1
     for i in range(0, N):
         if arr[i] == 0:
@@ -19,29 +19,23 @@ def valid_subarrays(arr, N):
         prefix_sum = arr[i]
     # print(arr)
 
-    # store first and last indices
+    # store no of occurences
     for i in range(0, N):
-        if arr[i] in first_indices:
-            last_indices[arr[i]] = i
-        else:
-            first_indices[arr[i]] = i
-            last_indices[arr[i]] = i
+        first_indices[arr[i]] += 1
 
     # print("first_indices: ", first_indices)
-    # print("last_indices: ", last_indices)
 
-    ans = 0
-    # if only one element in hashmap, that means only one element
-    # in array
-    if len(first_indices) == 1:
-        return ans
-
+    count = 0
+    # if occurences of element is > 1, then no of valid_subarrays
+    # = n * (n-1) / 2
     for i in first_indices:
-        ans += last_indices[i] - first_indices[i]
-        # print(first_indices[i])
-        # print(last_indices[i])
+        if first_indices[i] > 1:
+            count += ((first_indices[i] * (first_indices[i] - 1)) / 2)
 
-    return ans
+    if first_indices.get(0):
+        count += first_indices.get(0)
+
+    return int(count)
 
 
 if __name__ == '__main__':
