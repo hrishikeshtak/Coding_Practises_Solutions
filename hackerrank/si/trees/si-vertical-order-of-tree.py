@@ -13,6 +13,16 @@ class TreeNode:
 
 
 class Solution:
+    def insertBST(self, root, key):
+        if root is None:
+            return TreeNode(key)
+        if root.val < key:
+            root.right = self.insertBST(root.right, key)
+        else:
+            root.left = self.insertBST(root.left, key)
+
+        return root
+
     # @param A : root node of tree
     # @return a list of list of integers
     def verticalOrderTraversal(self, root):
@@ -48,22 +58,17 @@ class Solution:
                 horizontal_distances[hd[cur.right]].append(cur.right.val)
 
         # print(horizontal_distances)
-        res = []
         for key in sorted(horizontal_distances):
-            res.append(horizontal_distances[key])
-            # print(horizontal_distances[key])
-        return res
+            print(*sorted(horizontal_distances[key]))
 
 
 if __name__ == '__main__':
-    root = TreeNode(4)
-    root.left = TreeNode(2)
-    root.left.left = TreeNode(1)
-    root.left.right = TreeNode(3)
-    root.left.right.right = TreeNode(10)
-    root.left.right.right.left = TreeNode(30)
-    root.right = TreeNode(6)
-    root.right.left = TreeNode(5)
-    root.right.right = TreeNode(8)
-
-    print(Solution().verticalOrderTraversal(root))
+    for _ in range(int(input())):
+        obj = Solution()
+        N = int(input())
+        arr = list(map(int, input().split()))
+        root = TreeNode(arr[0])
+        for i in range(1, N):
+            root = obj.insertBST(root, arr[i])
+        obj.verticalOrderTraversal(root)
+        print()
