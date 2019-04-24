@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 
-from sys import stdin, stdout
-
 
 def size(arr):
     return len(arr) - 1
@@ -21,16 +19,16 @@ def insert(arr, key):
 def getMin(arr):
     N = size(arr)
     if N == 0:
-        # print("Empty")
-        stdout.write(str("Empty") + "\n")
+        print("Empty")
+        # stdout.write(str("Empty") + "\n")
     else:
-        # print(arr[1])
-        stdout.write(str(arr[1]) + "\n")
+        print(arr[1])
+        # stdout.write(str(arr[1]) + "\n")
 
 
 def LeftChildren(arr, i):
     left = 2 * i
-    if left >= size(arr):
+    if left > size(arr):
         return -1
 
     return left
@@ -38,7 +36,7 @@ def LeftChildren(arr, i):
 
 def RightChildren(arr, i):
     right = 2 * i + 1
-    if right >= size(arr):
+    if right > size(arr):
         return -1
 
     return right
@@ -57,8 +55,8 @@ def delMin(arr):
         return
 
     arr[1] = arr.pop()
-    heapify_iterative(arr, 1)
-    # heapify_recursive(arr, 1)
+    # heapify_iterative(arr, 1)
+    heapify_recursive(arr, 1)
     # print("After delMin: ")
     # print(arr)
 
@@ -77,7 +75,7 @@ def heapify_iterative(arr, idx):
 
         if smallest != idx:
             arr[idx], arr[smallest] = arr[smallest], arr[idx]
-            break
+            # break
         idx = smallest
         left = LeftChildren(arr, idx)
         right = RightChildren(arr, idx)
@@ -101,14 +99,14 @@ def heapify_recursive(arr, idx):
 
 def implementHeap(arr, op):
     if op[0].lower() == "insert":
-        x = int(op[1].rstrip())
+        x = int(op[1])
         # x = int(op[1])
         insert(arr, x)
 
-    elif op[0].rstrip().lower() == "getmin":
+    elif op[0].lower() == "getmin":
         getMin(arr)
 
-    elif op[0].rstrip().lower() == "delmin":
+    elif op[0].lower() == "delmin":
         delMin(arr)
     else:
         print("Invalid Operation")
@@ -118,7 +116,7 @@ def implementHeap(arr, op):
 if __name__ == '__main__':
     arr = [None]
     for _ in range(int(input())):
-        op = stdin.readline().split(" ", 1)
-        # op = input().split(" ", 1)
+        # op = stdin.readline().split(" ", 1)
+        op = input().split(" ", 1)
         # print(op)
         implementHeap(arr, op)

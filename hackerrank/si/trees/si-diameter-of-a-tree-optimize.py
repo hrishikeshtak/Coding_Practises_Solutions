@@ -4,6 +4,7 @@
 # the longest path between 2 nodes of the tree.
 
 # O(N)
+ans = 0
 
 
 class TreeNode:
@@ -35,23 +36,25 @@ def inorder(root):
 
 
 def diameter(root):
+    global ans
     if root is None:
         return 0
 
-    ans = [0]
-    h = diameter_util(root, ans)
+    ans = 0
+    h = diameter_util(root)
     # print(h, ans)
-    return ans[0]
+    return ans
 
 
-def diameter_util(root, ans):
+def diameter_util(root):
+    global ans
     if root is None:
         return 0
 
-    lheight = diameter_util(root.left, ans)
-    rheight = diameter_util(root.right, ans)
+    lheight = diameter_util(root.left)
+    rheight = diameter_util(root.right)
 
-    ans[0] = max(ans[0], lheight + rheight + 1)
+    ans = max(ans, lheight + rheight + 1)
 
     return 1 + max(lheight, rheight)
 
