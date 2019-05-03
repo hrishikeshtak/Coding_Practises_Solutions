@@ -1,45 +1,27 @@
 #!/usr/bin/python3
 
-
-def size(arr):
-    return len(arr) - 1
+# 0 based index
 
 
 def insert(arr, key):
     arr.append(key)
 
     # after addition, check heap property
-    idx = size(arr)
+    idx = len(arr) - 1
 
-    while idx > 1 and arr[idx] < arr[idx//2]:
-        arr[idx], arr[idx//2] = arr[idx//2], arr[idx]
-        idx = idx // 2
+    while idx > 0 and arr[idx] < arr[(idx-1)//2]:
+        arr[idx], arr[(idx-1)//2] = arr[(idx-1)//2], arr[idx]
+        idx = ((idx-1) // 2)
 
 
 def getMin(arr):
-    N = size(arr)
+    N = len(arr)
     if N == 0:
         print("Empty")
         # stdout.write(str("Empty") + "\n")
     else:
-        print(arr[1])
+        print(arr[0])
         # stdout.write(str(arr[1]) + "\n")
-
-
-def LeftChildren(arr, i):
-    left = 2 * i
-    if left > size(arr):
-        return -1
-
-    return left
-
-
-def RightChildren(arr, i):
-    right = 2 * i + 1
-    if right > size(arr):
-        return -1
-
-    return right
 
 
 def delMin(arr):
@@ -47,54 +29,33 @@ def delMin(arr):
     # print(arr)
 
     # copy last element to 1st element and then maintain heap property
-    N = size(arr)
+    N = len(arr)
     if N == 0:
         return
     elif N == 1:
         _ = arr.pop()
         return
 
-    arr[1] = arr.pop()
-    # heapify_iterative(arr, 1)
-    heapify_recursive(arr, 1)
+    arr[0] = arr.pop()
+    heapify_recursive(arr, 0, len(arr))
     # print("After delMin: ")
     # print(arr)
 
 
-def heapify_iterative(arr, idx):
-    left = LeftChildren(arr, idx)
-    right = RightChildren(arr, idx)
-
-    while left != -1 or right != -1:
-        # find smallest index value from l and r
-        smallest = idx
-        if left != -1 and arr[left] < arr[smallest]:
-            smallest = left
-        if right != -1 and arr[right] < arr[smallest]:
-            smallest = right
-
-        if smallest != idx:
-            arr[idx], arr[smallest] = arr[smallest], arr[idx]
-            # break
-        idx = smallest
-        left = LeftChildren(arr, idx)
-        right = RightChildren(arr, idx)
-
-
-def heapify_recursive(arr, idx):
+def heapify_recursive(arr, idx, N):
     smallest = idx
-    left = LeftChildren(arr, idx)
-    right = RightChildren(arr, idx)
+    left = 2*idx + 1
+    right = 2*idx + 2
 
     # find min index from l and r
-    if left != -1 and arr[left] < arr[smallest]:
+    if left < N and arr[left] < arr[smallest]:
         smallest = left
-    if right != -1 and arr[right] < arr[smallest]:
+    if right < N and arr[right] < arr[smallest]:
         smallest = right
 
     if smallest != idx:
         arr[idx], arr[smallest] = arr[smallest], arr[idx]
-        heapify_recursive(arr, smallest)
+        heapify_recursive(arr, smallest, N)
 
 
 def implementHeap(arr, op):
@@ -114,7 +75,7 @@ def implementHeap(arr, op):
 
 
 if __name__ == '__main__':
-    arr = [None]
+    arr = []
     for _ in range(int(input())):
         # op = stdin.readline().split(" ", 1)
         op = input().split(" ", 1)
