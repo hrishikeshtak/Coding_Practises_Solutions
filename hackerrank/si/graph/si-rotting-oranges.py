@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+from collections import deque
 
 """
 You are given a 2D matrix consisting of oranges.
@@ -25,7 +26,7 @@ def rotten_oranges(mat, N):
     """Use BFS Traversal."""
     # create Q to store indices of rotten oranges
 
-    Q = []  # rotten oranges indices
+    Q = deque()  # rotten oranges indices
     F = []  # Fresh oranges indices
 
     # store indices of fresh and rotten oranges
@@ -45,7 +46,7 @@ def rotten_oranges(mat, N):
 
     time = 0
     while len(Q) > 1:
-        temp = Q.pop(0)
+        temp = Q.popleft()
         if temp:
             x, y = temp
             # rotten the N-4 fresh oranges
