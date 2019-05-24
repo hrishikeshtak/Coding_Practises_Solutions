@@ -1,55 +1,25 @@
 #!/usr/bin/python3
 
-# Level Order Traversal
-from collections import deque
-
 
 class TreeNode:
-    def __init__(self, K):
+    def __init__(self, K, level=0):
         self.val = K
+        self.level = level
         self.left = None
         self.right = None
 
 
-def insert(root, X):
+def insert(root, X, level, max_height):
     if root is None:
-        return TreeNode(X)
+        max_height[0] = max(level, max_height[0])
+        # print(X, level, max_height)
+        return TreeNode(X, level)
 
     if X < root.val:
-        root.left = insert(root.left, X)
+        root.left = insert(root.left, X, root.level+1, max_height)
     else:
-        root.right = insert(root.right, X)
+        root.right = insert(root.right, X, root.level+1, max_height)
     return root
-
-
-def height(root):
-    # using Level Order Traversal
-    if root is None:
-        print(0)
-        return
-
-    Q = deque()
-    h = 0
-
-    Q.append((root, h))
-    while Q:
-        # print(Q)
-        cur, h = Q.popleft()
-        print("%s->%s" % (cur.val, h))
-        # print(h, end=" ")
-
-        if cur.left:
-            Q.append((cur.left, h+1))
-        if cur.right:
-            Q.append((cur.right, h+1))
-
-
-# def inOrder(root):
-#     if root is None:
-#         return
-#     inOrder(root.left)
-#     print(root.val, end=" ")
-#     inOrder(root.right)
 
 
 if __name__ == '__main__':
@@ -58,9 +28,10 @@ if __name__ == '__main__':
         arr = list(map(int, input().split()))
 
         # insert in BST
+        max_height = [0]
         root = None
+        level = 0
         for i in range(0, N):
-            root = insert(root, arr[i])
-        height(root)
-        # inOrder(root)
+            root = insert(root, arr[i], level, max_height)
+            print(max_height[0], end=" ")
         print()

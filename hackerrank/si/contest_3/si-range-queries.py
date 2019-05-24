@@ -30,18 +30,14 @@ def upper_index(arr, K):
     return hi
 
 
-def range_query(indices, A, B):
-    if A == 0:
-        return indices[B][1]
+def range_query(arr, A, B):
+    # find lower idx of A
+    lower_idx = lower_index(arr, A)
+    # find upper idx of B
+    upper_idx = upper_index(arr, B)
+    # print(lower_idx, upper_idx)
 
-    return indices[B][1] - indices[A][0] + 1
-
-
-def store_indices(arr, K):
-    indices = {}
-    for i in range(0, K+1):
-        indices[i] = (lower_index(arr, i), upper_index(arr, i))
-    return indices
+    return (upper_idx - lower_idx) + 1
 
 
 if __name__ == '__main__':
@@ -52,10 +48,8 @@ if __name__ == '__main__':
         # sort the array
         arr.sort()
         # print(arr)
-        # store lower and upper index of each number
-        indices = store_indices(arr, K)
 
         Q = int(input())
         for _ in range(Q):
             A, B = map(int, input().split())
-            print(range_query(indices, A, B))
+            print(range_query(arr, A, B))
