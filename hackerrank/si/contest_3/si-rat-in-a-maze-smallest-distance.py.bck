@@ -1,0 +1,65 @@
+#!/usr/bin/python3
+
+# using BFS, find shortest path from source to destination
+# prepare binary matrix
+# 0: empty cell
+# 1: forbidden cell
+from collections import deque
+
+
+def is_safe(mat, i, j, N, M):
+    if i >= 0 and j >= 0 and i < N and j < M and mat[i][j] == 0:
+        return True
+    return False
+
+
+def rat_in_maze(mat, Si, Sj, Di, Dj, N, M):
+    queue = deque()
+    di = [-1, 0, 1, -1, -1, 0, 1, 1]
+    dj = [-1, -1, -1, 0, 1, 1, 1, 0]
+
+    # visited matrix
+    visited = [[False for i in range(M)] for j in range(N)]
+
+    # if source itself is forbidden cell
+    if mat[Si][Sj] == 1:
+        return -1
+
+    # add Source coordinates + distance in queue
+    queue.append((Si, Sj, 0))
+    visited[Si][Sj] = True
+    ans = -1
+
+    while queue:
+        print("queue: ", queue)
+        x, y, dis = queue.popleft()
+        if x == Di and y == Dj:
+            ans = dis
+            break
+
+        for i, j in zip(di, dj):
+            row = x+i
+            col = y+j
+            if is_safe(mat, row, col, N, M) and visited[row][col] is False:
+                print(x, y)
+                visited[row][col] = True
+                queue.append((row, col, dis+1))
+            # visited[row][col] = False
+    # print(visited)
+    return ans
+
+
+if __name__ == '__main__':
+    for _ in range(int(input())):
+        N, M, X = map(int, input().split())
+        mat = [[0 for i in range(M)] for j in range(N)]
+        # source coordinates
+        Si, Sj = map(int, input().split())
+        # destination coordinates
+        Di, Dj = map(int, input().split())
+        for _ in range(X):
+            # forbidden cell
+            i, j = map(int, input().split())
+            mat[i][j] = 1
+        print(mat)
+        print(rat_in_maze(mat, Si, Sj, Di, Dj, N, M))
