@@ -17,4 +17,3 @@ for _ in range(int(input())):
             # divide by multiple of 5 and take sum
             temp = temp * 5
         print(count)
-
