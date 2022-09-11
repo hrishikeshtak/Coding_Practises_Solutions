@@ -1,0 +1,74 @@
+1. given a linked list that contains only 0s and 1s. convert it from binary to decimal.
+eg : 
+head: 1->0->1->1 
+number is 11
+
+4) follow-up: do the above question in single pass/iteration
+
+2. given two arrays A and B. sort A according to array B.
+ex-1:
+A = [4, 8, 6, 5, 1, 2, 4, 4, 7, 3, 8]
+B = [4, 7, 1]
+output is [4, 4, 4, 7, 1, 2, 3, 5, 6, 8, 8]
+
+ex-2:
+A = [1, 2, 4, 3, 5]
+B = [5, 1, 2]
+output is [5, 1, 2, 3, 4]
+
+Explanation: first the elements given in B must come in same order as in B and then remaining elements should 
+come in sorted order.
+
+3. 741. Cherry Pickup
+4. 438. Find All Anagrams in a String - Done
+5. asked topics such as proxies , db scaling , master slave, current project architecture.
+6. https://www.geeksforgeeks.org/maximum-sum-nodes-binary-tree-no-two-adjacent/
+Asked to design splitwise - identify classes and apis and asked to explain one end to end flow.
+39. Combination Sum
+HLD for bookmyshow with schema design
+2. HLD of how google docs hands traffic when many people editing and viewing at same time
+
+## vmware
+1. Reverse linkedlist between two giving points - Done
+1. Questions on current and prev experience and project architecture
+2. Design stack using queues (I was allowed to use two queues)
+https://leetcode.com/problems/word-search/
+
+## Ola Electric
+1.House robber 2 from leetcode
+1. LLD for snake and ladder game
+LLD of bookmyshow
+
+///Oyo rooms:///
+
+1st round :
+
+1. Group anagrams from LC - Done
+2. Min no of platforms(Greedy)
+
+2nd round:
+
+1.Flatten a linkedlist LC problme
+2. LLD of vending machine (unable to solve this completely)
+
+
+Design Whatsapp messanger system.
+
+
+//Walmart Labs
+
+Round 1 : Problem Solving
+1. Given an unsorted Array, search if a given number is present or not.
+2. Given n elements in an array, how many elements will actually take logn time to get searched using binary search.
+3. Binary Search using 3 pointers.
+
+Round 2 : LLD 
+1. How redis cache work 
+2. Master slave architecture and distributed caching
+3. Write LLD of a cache which is multilayered and supports multiple data structures like FIFO, LIFO, KEY-VALUE 
+
+
+2. Longest repeating character replacement -  https://leetcode.com/problems/longest-repeating-character-replacement/ (200 marks)
+
+3. Dungeon Game - https://leetcode.com/problems/dungeon-game/ (300 marks)
+
