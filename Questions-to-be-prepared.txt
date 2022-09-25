@@ -72,3 +72,22 @@ Round 2 : LLD
 
 3. Dungeon Game - https://leetcode.com/problems/dungeon-game/ (300 marks)
 
+// Credit Suisse
+Favorite Candy
+Your friend has N different kind of candies each present in Mi units (i = 1 to N). He is allowed to eat only one type of candy every day. Since he likes some candies more than the others, he gives each type of candy a priority and eats the higher priority candies first. However, there is a limit to it that he cannot eat more than k candies in one day (i.e. he may eat 1 or 2, … or k candies in a day. He asks you if somehow, he would be able to eat Xth type of candy on the Yth day.
+Note: He can only eat candy with priority p, after eating all the candies of priority p+1
+
+[5, 2, 6, 4, 1] -> Candy count
+[1, 2, 3, 4, 5] -> Priority
+X Y Result
+5 1 -> YES
+4 4 -> YES
+3 16 -> NO
+1 16 -> YES
+2 8 -> YES
+
+
+## Diamonti
+1st round:
+1. https://leetcode.com/problems/coin-change-ii/
+2. How to handle negative numbers in Hashmaps
